@@ -1,0 +1,41 @@
+- name: Install Docker and Postgress
+  hosts: postgres_servers
+  become: true
+
+  pre_tasks:
+    - name: Install docker
+      apt:
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+        update_cache: yes
+
+    - name: Create directory
+      file:
+        path: /database
+        state: directory
+        mode: '0755'
+
+    - name: Containers stop
+      command: docker-compose down
+      args:
+        chdir: /database
+      ignore_errors: true
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: ../docker-compose.yml
+        dest: /database/docker-compose.yml
+        mode: '0644'
+
+    - name: Copy insert-data.sh
+      copy:
+        src: ../insert-data.sh
+        dest: /database/insert-data.sh
+        mode: '0644'
+
+    - name: Start Containers
+      shell: sudo docker-compose up -d
+      args:
+        chdir: /database

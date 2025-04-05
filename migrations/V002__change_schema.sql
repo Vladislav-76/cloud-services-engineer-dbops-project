@@ -5,7 +5,7 @@ ALTER TABLE product
 
 ALTER TABLE orders
     ALTER COLUMN id TYPE BIGINT,
-    ALTER COLUMN status VARCHAR(255),
+    ALTER COLUMN status TYPE VARCHAR(255),
     ADD COLUMN date_created DATE NOT NULL;
 
 ALTER TABLE order_product

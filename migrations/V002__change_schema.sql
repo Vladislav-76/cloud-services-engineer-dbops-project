@@ -1,0 +1,21 @@
+ALTER TABLE product
+    ALTER COLUMN id TYPE BIGINT,
+    ALTER COLUMN picture_url TYPE VARCHAR(255),
+    ADD COLUMN price DOUBLE PRECISION NOT NULL CHECK (price > 0);
+
+ALTER TABLE orders
+    ALTER COLUMN id TYPE BIGINT,
+    ALTER COLUMN status VARCHAR(255),
+    ADD COLUMN date_created DATE NOT NULL;
+
+ALTER TABLE order_product
+    ALTER COLUMN order_id TYPE BIGINT,
+    ALTER COLUMN product_id TYPE BIGINT,
+    ADD CONSTRAINT fk_order
+        FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    ADD CONSTRAINT fk_product
+        FOREIGN KEY (fk_product) REFERENCES product(id) ON DELETE CASCADE;
+
+DROP TABLE IF EXISTS product_info;
+
+DROP TABLE IF EXISTS orders_date;

@@ -14,8 +14,7 @@ jobs:
     - name: Run database migrations with Flyway
       uses: joshuaavalon/flyway-action@v3.0.0
       with:
-        url: jdbc:postgresql://158.160.108.12:5432/store
-        # url: jdbc:postgresql://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }}
+        url: jdbc:postgresql://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }}
         user: ${{ secrets.DB_USER }}
         password: ${{ secrets.DB_PASSWORD }}
         locations: filesystem:./migrations

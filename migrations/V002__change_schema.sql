@@ -14,7 +14,7 @@ ALTER TABLE order_product
     ADD CONSTRAINT fk_order
         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     ADD CONSTRAINT fk_product
-        FOREIGN KEY (fk_product) REFERENCES product(id) ON DELETE CASCADE;
+        FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE;
 
 DROP TABLE IF EXISTS product_info;
 
